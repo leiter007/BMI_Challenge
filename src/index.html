@@ -6,21 +6,28 @@
     <title></title>
     <script src="js/person.js"></script>
     <script src="js/calculator.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <form id="calculate">
         <div id="metric-inputs">
+            <h1>BMI Calculator</h1>
+            <p>Please enter you weight in kilos, and your height in centimeters</p>
             <input type="text" id="weight-in-kgs" placeholder="Weight">
             <input type="text" id="height-in-cm" placeholder="Height">
         </div>
 
         <button type="submit" value="Calculate"> Calculate </button>
     </form>
-    <div>
+    <div id="message">
+        <hr>
         <span id="display_value"></span>
         <span id="display_message"></span>
     </div>
+
+
+
 
     <script type="text/javascript">
     const global = {}
