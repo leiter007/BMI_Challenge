@@ -10,21 +10,39 @@
 </head>
 
 <body>
+<h1>BMI Calculator</h1>
+
+<!--METRIC method from here on:-->
     <form id="calculate">
         <div id="metric-inputs">
-            <h1>BMI Calculator</h1>
+            <h2>METRIC METHOD</h2>
             <p>Please enter you weight in kilos, and your height in centimeters</p>
             <input type="text" id="weight-in-kgs" placeholder="Weight">
             <input type="text" id="height-in-cm" placeholder="Height">
         </div>
-
         <button type="submit" value="Calculate"> Calculate </button>
+        <div id="message">
+            <span id="display_value"></span>
+            <span id="display_message"></span>
+        </div>
     </form>
-    <div id="message">
-        <hr>
-        <span id="display_value"></span>
-        <span id="display_message"></span>
-    </div>
+    <hr>
+<!--IMPERIAL method from here on:-->
+    <form id="calculate">
+        <div id="metric-inputs">
+            <h2>IMPERIAL METHOD</h2>
+             <p>Please enter you weight in pounds, and your height in inches</p>
+             <input type="text" id="weight-in-pounds" placeholder="Weight">
+             <input type="text" id="height-in-inches" placeholder="Height">
+        </div>
+    
+        <button type="submit" value="Calculate"> Calculate </button>
+        <div id="message">
+            <span id="display_value"></span>
+            <span id="display_message"></span>
+        </div>
+    </form>
+
 
 
 
