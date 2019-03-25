@@ -21,7 +21,6 @@ BMICalculator.prototype.imperial_bmi = function(obj) {
     }
 };
 
-
 function setBMIMessage (obj){
     if (obj.bmiValue < 18.5) {
         obj.bmiMessage = "Underweight"

@@ -10,17 +10,19 @@
 </head>
 
 <body>
-<h1>BMI Calculator</h1>
+<header>BMI Calculator</header>
 
 <!--METRIC method from here on:-->
     <form id="calculate">
         <div id="metric-inputs">
+            <article>
             <h2>METRIC METHOD</h2>
             <p>Please enter you weight in kilos (kg), and your height in centimeters (cm)</p>
-            <input type="text" id="weight-in-kgs" placeholder="Weight">
-            <input type="text" id="height-in-cm" placeholder="Height">
+            </article>
+            <input type="text" id="weight-in-kgs" placeholder="Weight in KG">
+            <input type="text" id="height-in-cm" placeholder="Height in CM">
         </div>
-        <button type="submit" value="Calculate"> Calculate </button>
+        <button id="metric" type="submit" value="Calculate"> Calculate </button>
         <div id="message">
             <span id="display_value"></span>
             <span id="display_message"></span>
@@ -28,44 +30,47 @@
     </form>
     <hr>
 <!--IMPERIAL method from here on:-->
-    <form id="calculate">
-        <div id="metric-inputs">
+    <form id="calculateIMP">
+        <div id="imperial-inputs">
+            <article>
             <h2>IMPERIAL METHOD</h2>
              <p>Please enter you weight in pounds (lb), and your height in inches(in)</p>
              <p>One foot = 12 in. So multiply the number of feet by 12 and add them to the number of extra inches!</p>
-             <input type="text" id="weight-in-pounds" placeholder="Weight">
-             <input type="text" id="height-in-inches" placeholder="Height">
+            </article>
+             <input type="text" id="weight-in-pounds" placeholder="Weight in LB">
+             <input type="text" id="height-in-inches" placeholder="Height in IN">
         </div>
     
-        <button type="submit" value="Calculate"> Calculate </button>
+        <button id="imperial" type="submit" value="Calculate"> Calculate </button>
         <div id="message">
-            <span id="display_value"></span>
-            <span id="display_message"></span>
+            <span id="display_IMP_value"></span>
+            <span id="display_IMP_message"></span>
         </div>
     </form>
-
-
 
 
 
     <script type="text/javascript">
     const global = {}
     
-    global.calculateForm = document.querySelector('#calculate');
+    global.calculateMetric = document.querySelector('#calculate');
+    global.calculateImperial = document.querySelector('#calculateIMP');
     global.displayValueElement = document.querySelector('#display_value');
     global.displayMessageElement = document.querySelector('#display_message');
+    global.displayIMPValueElement = document.querySelector('#display_IMP_value');
+    global.displayIMPMessageElement = document.querySelector('#display_IMP_message');
 
     document.addEventListener('DOMContentLoaded', () => {
-        global.calculateForm.addEventListener('submit', event => {
+        global.calculateMetric.addEventListener('submit', event => {
             event.preventDefault();
-            calculateBMI()
+            calculateMetric()
             .then(person =>{
                 global.displayValueElement.innerHTML = `Your BMI is ${person.bmiValue}`;
                 global.displayMessageElement.innerHTML = `and you are ${person.bmiMessage}`;
             })
         })
     });
-    const calculateBMI = () => {
+    const calculateMetric = () => {
         return new Promise(resolve => {
             let w = parseFloat(document.getElementById('weight-in-kgs').value);
             let h = parseFloat(document.getElementById('height-in-cm').value);
@@ -73,7 +78,29 @@
                 weight: w,
                 height: h,
             });
-            person.calculate_bmi()
+            person.calculate_metric()
+            resolve(person);
+        })
+    };
+    document.addEventListener('DOMContentLoaded', () => {
+        global.calculateImperial.addEventListener('submit', event => {
+            event.preventDefault();
+            calculateImperial()
+            .then(person =>{
+                global.displayIMPValueElement.innerHTML = `Your BMI is ${person.bmiValue}`;
+                global.displayIMPMessageElement.innerHTML = `and you are ${person.bmiMessage}`;
+            })
+        })
+    });
+    const calculateImperial = () => {
+        return new Promise(resolve => {
+            let w = parseFloat(document.getElementById('weight-in-pounds').value);
+            let h = parseFloat(document.getElementById('height-in-inches').value);
+            let person = new Person({
+                weight: w,
+                height: h,
+            });
+            person.calculate_imperial()
             resolve(person);
         })
     };
