@@ -13,10 +13,10 @@
 <header>BMI Calculator</header>
 
 <!--METRIC method from here on:-->
-    <form id="calculate">
+    <form id="calculateMET">
         <div id="metric-inputs">
             <article>
-            <h2>METRIC METHOD</h2>
+            <h2>METRIC SYSTEM</h2>
             <p>Please enter you weight in kilos (kg), and your height in centimeters (cm)</p>
             </article>
             <input type="text" id="weight-in-kgs" placeholder="Weight in KG">
@@ -24,8 +24,7 @@
         </div>
         <button id="metric" type="submit" value="Calculate"> Calculate </button>
         <div id="message">
-            <span id="display_value"></span>
-            <span id="display_message"></span>
+            <span id="display_MET_message"></span>
         </div>
     </form>
     <hr>
@@ -33,7 +32,7 @@
     <form id="calculateIMP">
         <div id="imperial-inputs">
             <article>
-            <h2>IMPERIAL METHOD</h2>
+            <h2>IMPERIAL SYSTEM</h2>
              <p>Please enter you weight in pounds (lb), and your height in inches(in)</p>
              <p>One foot = 12 in. So multiply the number of feet by 12 and add them to the number of extra inches!</p>
             </article>
@@ -43,7 +42,6 @@
     
         <button id="imperial" type="submit" value="Calculate"> Calculate </button>
         <div id="message">
-            <span id="display_IMP_value"></span>
             <span id="display_IMP_message"></span>
         </div>
     </form>
@@ -53,11 +51,9 @@
     <script type="text/javascript">
     const global = {}
     
-    global.calculateMetric = document.querySelector('#calculate');
+    global.calculateMetric = document.querySelector('#calculateMET');
     global.calculateImperial = document.querySelector('#calculateIMP');
-    global.displayValueElement = document.querySelector('#display_value');
-    global.displayMessageElement = document.querySelector('#display_message');
-    global.displayIMPValueElement = document.querySelector('#display_IMP_value');
+    global.displayMETMessageElement = document.querySelector('#display_MET_message');
     global.displayIMPMessageElement = document.querySelector('#display_IMP_message');
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -65,8 +61,7 @@
             event.preventDefault();
             calculateMetric()
             .then(person =>{
-                global.displayValueElement.innerHTML = `Your BMI is ${person.bmiValue}`;
-                global.displayMessageElement.innerHTML = `and you are ${person.bmiMessage}`;
+                global.displayMETMessageElement.innerHTML = person.bmiMessage
             })
         })
     });
@@ -87,8 +82,7 @@
             event.preventDefault();
             calculateImperial()
             .then(person =>{
-                global.displayIMPValueElement.innerHTML = `Your BMI is ${person.bmiValue}`;
-                global.displayIMPMessageElement.innerHTML = `and you are ${person.bmiMessage}`;
+                global.displayIMPMessageElement.innerHTML = person.bmiMessage
             })
         })
     });
@@ -97,8 +91,8 @@
             let w = parseFloat(document.getElementById('weight-in-pounds').value);
             let h = parseFloat(document.getElementById('height-in-inches').value);
             let person = new Person({
-                weight: w,
-                height: h,
+                weight_lbs: w,
+                height_in: h,
             });
             person.calculate_imperial()
             resolve(person);

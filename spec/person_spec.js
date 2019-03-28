@@ -1,6 +1,6 @@
 const { Person } = require('./spec.helper')
 
-"// Unit tests for METRIC method"
+"// Unit tests for METRIC system"
 describe("Person", () => {
     let person = new Person({
         weight: 90,
@@ -15,39 +15,39 @@ describe("Person", () => {
         expect(person.height).to.equal(186);
     });
 
-    it("should calculate BMI value in METRIC method", () => {
+    it("should calculate BMI value in METRIC system", () => {
         person.calculate_metric();
         expect(person.bmiValue).to.equal(26.01);
     });
 
-    it("should have a BMI Message in METRIC method", () => {
+    it("should have a BMI Message in METRIC system", () => {
         person.calculate_metric()
-        expect(person.bmiMessage).to.equal('Overweight');
+        expect(person.bmiMessage).to.equal('Your BMI is 26.01 and you are Overweight');
     });
 });
 
-"// Unit tests for IMPERIAL method"
+"// Unit tests for IMPERIAL system"
 describe("Person", () => {
     let person = new Person({
-        weight: 200,
-        height: 70
+        weight_lbs: 200,
+        height_in: 70
     });
 
     it("should have weight of 200 pounds", () => {
-        expect(person.weight).to.equal(200);
+        expect(person.weight_lbs).to.equal(200);
     });
 
     it("should have height of 70 inches", () => {
-        expect(person.height).to.equal(70);
+        expect(person.height_in).to.equal(70);
     });
 
-    it("should calculate BMI value in IMPERIAL method", () => {
+    it("should calculate BMI value in IMPERIAL system", () => {
         person.calculate_imperial();
         expect(person.bmiValue).to.equal(28.69);
     });
 
-    it("should have a BMI Message in IMPERIAL method", () => {
+    it("should have a BMI Message in IMPERIAL system", () => {
         person.calculate_imperial();
-        expect(person.bmiMessage).to.equal('Overweight');
+        expect(person.bmiMessage).to.equal('Your BMI is 28.69 and you are Overweight');
     });
 });
